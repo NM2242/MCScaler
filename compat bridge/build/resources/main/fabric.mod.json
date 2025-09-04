@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "upscale-compat-bridge",
+  "version": "0.1.1",
+  "name": "MCScaler Compat Bridge",
+  "description": "Bridges world render events to MCScaler without compile-time coupling.",
+  "environment": "client",
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "1.20.1",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "mc-upscaler-fabric": "*"
+  },
+  "entrypoints": {
+    "client": [
+      "com.example.upscale.bridge.CompatBridge"
+    ]
+  },
+  "mixins": [
+    "bridge.mixins.json"
+  ]
+}
