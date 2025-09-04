@@ -1,108 +1,76 @@
 package com.example.upscale;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.example.upscale.util.Debug;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.gl.SimpleFramebuffer;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.BufferRenderer;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormat;
-import net.minecraft.client.render.VertexFormats;
 
-/**
- * Central scaler: wraps world rendering into a low-res framebuffer and upscales to the window.
- */
-public final class RenderScaler {
-    private static SimpleFramebuffer lowFbo;
-    private static int lowW = -1, lowH = -1;
-    private static boolean active = false;
-    private static boolean bridgeDriving = false;
+public class RenderScaler {
+    private static RenderScaler INSTANCE;
 
-    private RenderScaler(){}
+    private Framebuffer lowResFbo;
+    private boolean active = false;
 
-    public static boolean isActive() { return active; }
-    public static boolean isBridgeDriving() { return bridgeDriving; }
-    public static void setBridgeDriving(boolean driving) { bridgeDriving = driving; }
+    private RenderScaler() {}
 
-    private static void log(String s) {
-        com.example.upscale.util.Debug.log("[MCScaler Main] ", s);
-    }
-
-    private static void ensureLowFbo(int ww, int wh) {
-        int targetW = Math.max(1, Math.round(ww * UpscaleConfig.scale));
-        int targetH = Math.max(1, Math.round(wh * UpscaleConfig.scale));
-        if (lowFbo == null || targetW != lowW || targetH != lowH) {
-            if (lowFbo != null) {
-                lowFbo.delete();
-            }
-            lowFbo = new SimpleFramebuffer(targetW, targetH, true, MinecraftClient.IS_SYSTEM_MAC);
-            lowW = targetW; lowH = targetH;
-            log("Created low FBO " + lowW + "x" + lowH + " for window " + ww + "x" + wh + " scale=" + UpscaleConfig.scale);
+    public static RenderScaler get() {
+        if (INSTANCE == null) {
+            INSTANCE = new RenderScaler();
         }
+        return INSTANCE;
     }
 
-    /** Begin low-res capture. No-op if disabled or scale ~1. */
-    public static boolean beginWorldLowRes(String from) {
-        if (!UpscaleConfig.enabled) return false;
-        if (UpscaleConfig.scale >= 0.999f) return false;
-        var mc = MinecraftClient.getInstance();
+    // --- Old bridge compatibility stubs (safe no-ops) ---
+    public static boolean isBridgeDriving() { return false; }
+    public static void beginWorldLowRes(String tag) {}
+    public static void endWorldAndUpscaleToMain(String tag) {}
+
+    public static void beginLowResIfActive() {
+        RenderScaler self = get();
+        if (!UpscaleConfig.enabled) return;
+
+        float scale = UpscaleConfig.getScale();
+        if (scale >= 0.999f) {
+            self.active = false;
+            return;
+        }
+
+        MinecraftClient mc = MinecraftClient.getInstance();
         int ww = mc.getWindow().getFramebufferWidth();
         int wh = mc.getWindow().getFramebufferHeight();
-        ensureLowFbo(ww, wh);
+        int lw = Math.max(1, (int)(ww * scale));
+        int lh = Math.max(1, (int)(wh * scale));
 
-        // Bind low-res FBO
-        lowFbo.beginWrite(true);
-        RenderSystem.viewport(0, 0, lowW, lowH);
-        active = true;
-        log("BEGIN low-res from=" + from + " -> " + lowW + "x" + lowH);
-        return true;
-    }
-
-    /** End capture and upscale to main framebuffer. Safe to call even if not active. */
-    public static void endWorldAndUpscaleToMain(String from) {
-        if (!active) return;
-        var mc = MinecraftClient.getInstance();
-        Framebuffer main = mc.getFramebuffer();
-
-        // Finish writing to low FBO
-        lowFbo.endWrite();
-        // Bind main for drawing and draw a full-screen quad sampling lowFbo color texture.
-        main.beginWrite(true);
-
-        RenderSystem.disableDepthTest();
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderTexture(0, lowFbo.getColorAttachment());
-
-        // Account for GL texture size if not exact
-        float u = (float) lowW / (float) lowFbo.textureWidth;
-        float v = (float) lowH / (float) lowFbo.textureHeight;
-
-        BufferBuilder buf = Tessellator.getInstance().getBuffer();
-        buf.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
-        // NDC quad
-        buf.vertex(-1, -1, 0).texture(0, 0).next();
-        buf.vertex( 1, -1, 0).texture(u, 0).next();
-        buf.vertex( 1,  1, 0).texture(u, v).next();
-        buf.vertex(-1,  1, 0).texture(0, v).next();
-        BufferRenderer.drawWithGlobalProgram(buf.end());
-
-        RenderSystem.disableBlend();
-        RenderSystem.enableDepthTest();
-
-        active = false;
-        log("END+UPSCALE from=" + from);
-    }
-
-    /** If low-res is still active, end it now to avoid leaking state. */
-    public static void ensureClosedIfOpen(String from) {
-        if (active) {
-            log("ensureClosedIfOpen from=" + from);
-            endWorldAndUpscaleToMain(from + " (ensure)");
+        if (self.lowResFbo == null || self.lowResFbo.textureWidth != lw || self.lowResFbo.textureHeight != lh) {
+            if (self.lowResFbo != null) {
+                self.lowResFbo.delete();
+            }
+            self.lowResFbo = new SimpleFramebuffer(lw, lh, true, MinecraftClient.IS_SYSTEM_MAC);
+            Debug.log("MCScaler", "Created lowResFbo " + lw + "x" + lh);
         }
+
+        self.lowResFbo.beginWrite(true);
+        self.active = true;
+    }
+
+    public static void endLowResAndUpscale() {
+        RenderScaler self = get();
+        if (!self.active || self.lowResFbo == null) return;
+
+        MinecraftClient mc = MinecraftClient.getInstance();
+        int ww = mc.getWindow().getFramebufferWidth();
+        int wh = mc.getWindow().getFramebufferHeight();
+
+        mc.getFramebuffer().beginWrite(true);
+
+        // ✅ correct call for 1.20.1
+        self.lowResFbo.draw(ww, wh, false);
+
+        self.active = false;
+        Debug.log("MCScaler", "Upscaled lowResFbo → full window " + ww + "x" + wh);
+    }
+
+    public static void tick() {
+        // Could be used for async cleanup or advanced pipelines later
     }
 }

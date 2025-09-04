@@ -4,9 +4,12 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "GameRendererMixin",
-    "InGameHudMixin"
+    "OptionsScreenMixin",
+    "WorldRendererMixin",
+    "HudRenderMixin",
+    "MinecraftClientMixin"
   ],
   "injectors": {
-    "defaultRequire": 1
+    "defaultRequire": 0
   }
 }
