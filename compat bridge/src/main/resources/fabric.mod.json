@@ -20,7 +20,6 @@
   },
   "mixins": [
     "bridge.mixins.json",
-    "upscaler.mixins.json",
     "upscaler.compat.mixins.json"
   ]
 }
