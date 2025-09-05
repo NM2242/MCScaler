@@ -161,5 +161,15 @@
       <option name="name" value="LoomLocalRemappedMods" />
       <option name="url" value="file:/$PROJECT_DIR$/../../../current%20builds/build%2029%20post%20live/compat%20bridge/.gradle/loom-cache/remapped_mods/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomLocalRemappedMods" />
+      <option name="name" value="LoomLocalRemappedMods" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../current%20builds/Build%20Test%20branch/compat%20bridge/.gradle/loom-cache/remapped_mods/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomLocalMinecraft" />
+      <option name="name" value="LoomLocalMinecraft" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../current%20builds/Build%20Test%20branch/compat%20bridge/.gradle/loom-cache/minecraftMaven/" />
+    </remote-repository>
   </component>
 </project>

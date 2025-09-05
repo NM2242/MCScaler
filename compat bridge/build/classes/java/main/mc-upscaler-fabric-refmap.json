@@ -1,4 +1,14 @@
 {
-  "mappings": {},
-  "data": {}
+  "mappings": {
+    "com/example/upscale/compatdebug/VanillaWorldRendererDebugMixin": {
+      "render": "Lnet/minecraft/class_761;method_22710(Lnet/minecraft/class_4587;FJZLnet/minecraft/class_4184;Lnet/minecraft/class_757;Lnet/minecraft/class_765;Lorg/joml/Matrix4f;)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "com/example/upscale/compatdebug/VanillaWorldRendererDebugMixin": {
+        "render": "Lnet/minecraft/class_761;method_22710(Lnet/minecraft/class_4587;FJZLnet/minecraft/class_4184;Lnet/minecraft/class_757;Lnet/minecraft/class_765;Lorg/joml/Matrix4f;)V"
+      }
+    }
+  }
 }

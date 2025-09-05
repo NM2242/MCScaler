@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Build Live.compat bridge.ecfilter-fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Build Live.compat bridge.ecfilter-fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Build Live.compat bridge.ecfilter-fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Build Live.compat bridge.ecfilter-fabric.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Build Test branch.compat bridge.ecfilter-fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Build Test branch.compat bridge.ecfilter-fabric.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Build Test branch.compat bridge.ecfilter-fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Build Test branch.compat bridge.ecfilter-fabric.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/build 10 build 9 hd bad horizon.compat bridge.ecfilter-fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/build 10 build 9 hd bad horizon.compat bridge.ecfilter-fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/build 10 build 9 hd bad horizon.compat bridge.ecfilter-fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/build 10 build 9 hd bad horizon.compat bridge.ecfilter-fabric.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/build 15 apply scaling.compat bridge.ecfilter-fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/build 15 apply scaling.compat bridge.ecfilter-fabric.main.iml" />
