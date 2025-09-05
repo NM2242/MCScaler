@@ -1,7 +1,6 @@
-package com.example.upscale.mixin.vanilla;
+package com.example.upscale.mixin;
 
-import com.example.upscale.RenderScaler;
-import com.example.upscale.util.Trace;
+import com.example.upscale.util.Debug;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,18 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
 
-    @Inject(method = "render", at = @At("HEAD"))
-    private void mcs$hud_HEAD(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-        Trace.t("CompatTrace", "Vanilla InGameHud.render → HEAD");
-        try {
-            RenderScaler.endLowResAndUpscale();
-        } catch (Throwable t) {
-            Trace.t("MCScaler", "endLowResAndUpscale failed");
-        }
-    }
-
     @Inject(method = "render", at = @At("TAIL"))
-    private void mcs$hud_TAIL(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-        Trace.t("CompatTrace", "Vanilla InGameHud.render → TAIL");
+    private void mcs$debugHudTrace(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
+        Debug.log("MCScaler", "InGameHud.render TAIL → HUD drawn");
     }
 }

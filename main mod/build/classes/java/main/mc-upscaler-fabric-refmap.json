@@ -1,11 +1,9 @@
 {
   "mappings": {
-    "com/example/upscale/mixin/GameRendererMixin": {
-      "Lnet/minecraft/client/gui/hud/InGameHud;render(Lnet/minecraft/client/gui/DrawContext;F)V": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V",
-      "render": "Lnet/minecraft/class_757;method_3192(FJZ)V",
-      "renderWorld": "Lnet/minecraft/class_757;method_3188(FJLnet/minecraft/class_4587;)V"
-    },
     "com/example/upscale/mixin/HudRenderMixin": {
+      "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
+    },
+    "com/example/upscale/mixin/InGameHudMixin": {
       "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
     },
     "com/example/upscale/mixin/MinecraftClientMixin": {
@@ -17,12 +15,13 @@
     "com/example/upscale/mixin/WorldRendererMixin": {
       "render": "Lnet/minecraft/class_761;method_22710(Lnet/minecraft/class_4587;FJZLnet/minecraft/class_4184;Lnet/minecraft/class_757;Lnet/minecraft/class_765;Lorg/joml/Matrix4f;)V"
     },
+    "com/example/upscale/mixin/vanilla/GameRendererAlignMixin": {
+      "Lnet/minecraft/client/gui/hud/InGameHud;render(Lnet/minecraft/client/util/math/MatrixStack;F)V": "Lnet/minecraft/class_329;render(Lnet/minecraft/class_4587;F)V",
+      "render(FJZ)V": "Lnet/minecraft/class_757;method_3192(FJZ)V"
+    },
     "com/example/upscale/mixin/vanilla/GameRendererVanillaAlignMixin": {
       "render(FJZ)V": "Lnet/minecraft/class_757;method_3192(FJZ)V",
       "renderWorld(FJLnet/minecraft/client/util/math/MatrixStack;)V": "Lnet/minecraft/class_757;method_3188(FJLnet/minecraft/class_4587;)V"
-    },
-    "com/example/upscale/mixin/vanilla/InGameHudMixin": {
-      "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
     },
     "com/example/upscale/mixin/vanilla/WorldRendererTraceMixin": {
       "render": "Lnet/minecraft/class_761;method_22710(Lnet/minecraft/class_4587;FJZLnet/minecraft/class_4184;Lnet/minecraft/class_757;Lnet/minecraft/class_765;Lorg/joml/Matrix4f;)V"
@@ -30,12 +29,10 @@
   },
   "data": {
     "named:intermediary": {
-      "com/example/upscale/mixin/GameRendererMixin": {
-        "Lnet/minecraft/client/gui/hud/InGameHud;render(Lnet/minecraft/client/gui/DrawContext;F)V": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V",
-        "render": "Lnet/minecraft/class_757;method_3192(FJZ)V",
-        "renderWorld": "Lnet/minecraft/class_757;method_3188(FJLnet/minecraft/class_4587;)V"
-      },
       "com/example/upscale/mixin/HudRenderMixin": {
+        "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
+      },
+      "com/example/upscale/mixin/InGameHudMixin": {
         "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
       },
       "com/example/upscale/mixin/MinecraftClientMixin": {
@@ -47,12 +44,13 @@
       "com/example/upscale/mixin/WorldRendererMixin": {
         "render": "Lnet/minecraft/class_761;method_22710(Lnet/minecraft/class_4587;FJZLnet/minecraft/class_4184;Lnet/minecraft/class_757;Lnet/minecraft/class_765;Lorg/joml/Matrix4f;)V"
       },
+      "com/example/upscale/mixin/vanilla/GameRendererAlignMixin": {
+        "Lnet/minecraft/client/gui/hud/InGameHud;render(Lnet/minecraft/client/util/math/MatrixStack;F)V": "Lnet/minecraft/class_329;render(Lnet/minecraft/class_4587;F)V",
+        "render(FJZ)V": "Lnet/minecraft/class_757;method_3192(FJZ)V"
+      },
       "com/example/upscale/mixin/vanilla/GameRendererVanillaAlignMixin": {
         "render(FJZ)V": "Lnet/minecraft/class_757;method_3192(FJZ)V",
         "renderWorld(FJLnet/minecraft/client/util/math/MatrixStack;)V": "Lnet/minecraft/class_757;method_3188(FJLnet/minecraft/class_4587;)V"
-      },
-      "com/example/upscale/mixin/vanilla/InGameHudMixin": {
-        "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
       },
       "com/example/upscale/mixin/vanilla/WorldRendererTraceMixin": {
         "render": "Lnet/minecraft/class_761;method_22710(Lnet/minecraft/class_4587;FJZLnet/minecraft/class_4184;Lnet/minecraft/class_757;Lnet/minecraft/class_765;Lorg/joml/Matrix4f;)V"
