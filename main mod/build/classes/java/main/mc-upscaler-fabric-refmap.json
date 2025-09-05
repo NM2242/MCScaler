@@ -1,9 +1,10 @@
 {
   "mappings": {
-    "com/example/upscale/mixin/HudRenderMixin": {
-      "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
+    "com/example/upscale/mixin/GameRendererMixin": {
+      "Lnet/minecraft/client/render/GameRenderer;renderHand(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/Camera;F)V": "Lnet/minecraft/class_757;method_3172(Lnet/minecraft/class_4587;Lnet/minecraft/class_4184;F)V",
+      "render(FJZ)V": "Lnet/minecraft/class_757;method_3192(FJZ)V"
     },
-    "com/example/upscale/mixin/InGameHudMixin": {
+    "com/example/upscale/mixin/HudRenderMixin": {
       "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
     },
     "com/example/upscale/mixin/MinecraftClientMixin": {
@@ -29,10 +30,11 @@
   },
   "data": {
     "named:intermediary": {
-      "com/example/upscale/mixin/HudRenderMixin": {
-        "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
+      "com/example/upscale/mixin/GameRendererMixin": {
+        "Lnet/minecraft/client/render/GameRenderer;renderHand(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/Camera;F)V": "Lnet/minecraft/class_757;method_3172(Lnet/minecraft/class_4587;Lnet/minecraft/class_4184;F)V",
+        "render(FJZ)V": "Lnet/minecraft/class_757;method_3192(FJZ)V"
       },
-      "com/example/upscale/mixin/InGameHudMixin": {
+      "com/example/upscale/mixin/HudRenderMixin": {
         "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;F)V"
       },
       "com/example/upscale/mixin/MinecraftClientMixin": {
