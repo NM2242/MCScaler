@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "resolutioncontrol",
+	"version": "${version}",
+
+	"name": "ResolutionControl+",
+	"description": "Gives you more control over minecraft's render resolution.",
+	"authors": [
+		"juliand665", "UltimateBoomer", "fantahund"
+	],
+	"contact": {
+		"homepage": "https://ultimateboomer.github.io/",
+		"sources": "https://github.com/UltimateBoomer/Resolution-Control",
+		"issues": "https://github.com/UltimateBoomer/Resolution-Control/issues"
+	},
+
+	"license": "MIT",
+	"icon": "assets/resolutioncontrol/icon.png",
+
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"io.github.ultimateboomer.resolutioncontrol.ResolutionControlMod"
+		],
+		"modmenu": [
+			"io.github.ultimateboomer.resolutioncontrol.compat.modmenu.ModMenuInfo"
+		]
+	},
+	"mixins": [
+		"resolutioncontrol.mixins.json"
+	],
+	"accessWidener": "resolutioncontrol.accesswidener",
+	"depends": {
+		"fabricloader": ">=0.14.11",
+		"fabric": "*",
+		"minecraft": ["1.20.x"],
+		"java": ">=17"
+	},
+	"suggests": {
+		"flamingo": "*"
+	}
+}
