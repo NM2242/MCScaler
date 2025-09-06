@@ -34,7 +34,7 @@ public class UpscalerConfigScreen extends Screen {
             @Override
             protected void applyValue() {
                 // Clamp between 0.5 and 1.0
-                double clamped = Math.max(0.5, Math.min(1.0, this.value));
+                double clamped = Math.max(0.1, Math.min(1.0, this.value));
                 UpscaleConfig.setScale(clamped);
             }
         });
